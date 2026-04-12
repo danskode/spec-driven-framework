@@ -13,6 +13,27 @@ Læs `.specs/<feature-name>/spec.md` grundigt, især:
 - Constraints — disse er dine begrænsninger
 - Scope — hvad er eksplicit ekskluderet
 
+## Trin 1b — Detektér feature-type og læs mønster
+
+Identificér feature-typen ud fra spec.md (Intent + Acceptance Criteria):
+
+| Type | Signal i spec |
+|------|--------------|
+| **crud** | Opret, læs, rediger, slet, liste, ressource |
+| **auth** | Login, logout, signup, session, password, token |
+| **rest-api** | Endpoint, HTTP, request, response, API |
+| **ui** | Visning, side, formular, komponent, render |
+| **background** | Job, kron, asynkron, kø, email-afsendelse, batch |
+
+Læs det tilsvarende mønsterdokument:
+- `.specs/_templates/patterns/crud.md`
+- `.specs/_templates/patterns/auth.md`
+- `.specs/_templates/patterns/rest-api.md`
+- `.specs/_templates/patterns/ui.md`
+- `.specs/_templates/patterns/background.md`
+
+Brug mønsteret som tjekliste når du skriver plan.md — verificér at planen dækker de relevante punkter fra mønsteret. Hvis featuren spænder over flere typer, læs begge relevante mønsterfiler.
+
 ## Trin 2 — Research kodebasen
 
 Forstå systemet inden du planlægger. Brug `Glob` og `Grep` til at:

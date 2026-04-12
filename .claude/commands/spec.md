@@ -10,6 +10,8 @@ Læs disse filer inden du begynder:
 
 Hvis `CONSTITUTION.md` ikke er udfyldt, stop og bed brugeren om at udfylde den først.
 
+Tjek om der eksisterer en `.specs/<feature-name>/user-stories.md` fra et forudgående `/story`-kørsel. Hvis ja: læs den og brug stories og acceptkriterier som primært input til spec.md — de repræsenterer allerede godkendt intent og prioritering. Spring da de fleste af Trin 2's afklarende spørgsmål over.
+
 ## Trin 2 — Forstå intent
 
 Identificér først feature-typen ud fra brugerens beskrivelse — det bestemmer hvilke spørgsmål der er vigtigst:

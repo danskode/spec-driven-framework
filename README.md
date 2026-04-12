@@ -65,13 +65,22 @@ Giver dig pass/fail per acceptance criteria.
 Feature-idé
     │
     ▼
+/story [valgfrit] ───────────────────────────────────────────────────────
+    │  Output: .specs/<feature>/user-stories.md
+    │  Indhold: User stories i PO-sprog, prioriteter (Must/Should/Could)
+    │  Spring over hvis du allerede kender de tekniske krav
+    │
+    ▼ [DU REVIEWER OG GODKENDER]
+    │
 /spec ──────────────────────────────────────────────────────────────────
+    │  Læser user-stories.md automatisk hvis den findes
     │  Output: .specs/<feature>/spec.md
     │  Indhold: Intent, Acceptance Criteria, Scope, Constraints
     │
     ▼ [DU REVIEWER OG GODKENDER]
     │
 /plan ──────────────────────────────────────────────────────────────────
+    │  Detekterer feature-type → læser mønsterfil automatisk
     │  Output: .specs/<feature>/plan.md
     │  Indhold: Teknisk approach, præcise filer, trin, test-kommandoer
     │
@@ -143,8 +152,9 @@ git checkout -b feature/add-contact-form
 
 | Skill | Fase | Hvad den gør |
 |-------|------|--------------|
-| `/spec` | 1 | Genererer spec fra din beskrivelse |
-| `/plan` | 2 | Oversætter spec til teknisk implementeringsplan |
+| `/story` | 0 (valgfrit) | PO-perspektiv: user stories og prioriteter før spec |
+| `/spec` | 1 | Genererer spec — læser user-stories.md automatisk hvis den findes |
+| `/plan` | 2 | Oversætter spec til teknisk plan — vælger mønsterfil automatisk |
 | `/tasks` | 3 | Nedbryder plan til atomiske tasks |
 | `/review-spec` | 5 | Verificerer implementering mod acceptance criteria |
 
