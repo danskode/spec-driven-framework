@@ -38,8 +38,16 @@ Alle tasks markeret ✓ OG `/review-spec` giver pass på alle acceptance criteri
 
 ## Trin 4 — Præsenter og afvent
 
-> "Tasks gemt i `.specs/<feature-name>/tasks.md`. Du kan nu implementere task for task.
-> Kør `/review-spec` når alle tasks er markeret færdige."
+Sig følgende til brugeren:
+
+> "Tasks gemt i `.specs/<feature-name>/tasks.md`."
+>
+> "Du er nu klar til **Fase 4: Implement**. Sådan fortsætter du:
+>
+> - Sig **'implementer task 1'** for at starte — én ad gangen giver mest kontrol
+> - Eller sig **'implementer alle tasks'** for at køre dem i forlængelse af hinanden
+>
+> Når alle tasks er markeret ✓, kør `/review-spec` for at verificere mod spec.md."
 
 ## Regler
 

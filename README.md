@@ -12,15 +12,13 @@ Et GitHub template repository der hjælper dig med at gå fra vibe coding til st
 
 Klik **"Use this template"** øverst på GitHub-siden og opret dit eget repo.
 
-Klon dit nye repo:
+### 2. Klon og aktivér git hook
+
+**Vigtigt:** Kør alle kommandoer inde i projektmappen.
+
 ```bash
 git clone https://github.com/<dit-brugernavn>/<dit-projekt>.git
 cd <dit-projekt>
-```
-
-### 2. Aktivér git hook
-
-```bash
 git config core.hooksPath .githooks
 chmod +x .githooks/pre-commit
 ```
