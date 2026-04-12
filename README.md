@@ -117,6 +117,30 @@ Se `.specs/example/` for et komplet gennemgående eksempel (kontaktformular i Fl
 
 ---
 
+## CI/CD
+
+Tre GitHub Actions kører automatisk på pull requests:
+
+| Workflow | Trigger | Hvad den gør |
+|----------|---------|--------------|
+| **Spec Lint** | PR åbnes/opdateres | Fejler PR hvis spec mangler eller er ufuldstændig |
+| **Spec Summary** | PR åbnes/opdateres | Poster acceptance criteria som kommentar på PR |
+| **Tests** | Push + PR | Kører projektets test-suite (pytest/jest auto-detekteret) |
+
+**Branch-navnekonvention:** Brug `feature/<spec-name>` så CI kan matche branch til spec automatisk.
+
+```bash
+# Eksempel
+git checkout -b feature/add-contact-form
+# matcher automatisk til .specs/add-contact-form/spec.md
+```
+
+**Branch protection (anbefalet):** Gå til Settings → Branches → Add rule på `main`:
+- Hak "Require status checks to pass" og vælg **Spec Lint**
+- Studerende kan ikke merge uden en godkendt spec
+
+---
+
 ## Skills reference
 
 | Skill | Fase | Hvad den gør |

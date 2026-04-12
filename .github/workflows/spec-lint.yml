@@ -1,0 +1,107 @@
+name: Spec Lint
+
+on:
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  spec-lint:
+    name: Check spec exists and is complete
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Find and validate spec
+        id: spec-check
+        shell: bash
+        run: |
+          BRANCH="${{ github.head_ref }}"
+          echo "Branch: $BRANCH"
+
+          # Udled feature-navn fra branch (strip feature/ prefix)
+          FEATURE=$(echo "$BRANCH" | sed 's|^feature/||')
+          SPEC_PATH=".specs/$FEATURE/spec.md"
+
+          echo "Leder efter spec: $SPEC_PATH"
+
+          # --- Tjek 1: Eksisterer spec for denne branch? ---
+          if [ -f "$SPEC_PATH" ]; then
+            echo "spec_found=true" >> $GITHUB_OUTPUT
+            echo "spec_path=$SPEC_PATH" >> $GITHUB_OUTPUT
+            echo "✅ Spec fundet: $SPEC_PATH"
+          else
+            # Fallback: Er der overhovedet nogen specs i projektet?
+            ANY_SPEC=$(find .specs -name "spec.md" \
+              ! -path "*/_templates/*" \
+              ! -path "*/example/*" \
+              2>/dev/null | head -1)
+
+            if [ -n "$ANY_SPEC" ]; then
+              echo "spec_found=true" >> $GITHUB_OUTPUT
+              echo "spec_path=$ANY_SPEC" >> $GITHUB_OUTPUT
+              echo "⚠️  Ingen spec matcher branch-navn '$FEATURE'."
+              echo "   Fandt dog: $ANY_SPEC"
+              echo "   Navngiv din branch 'feature/<spec-name>' for præcis matching."
+            else
+              echo "spec_found=false" >> $GITHUB_OUTPUT
+              echo "❌ Ingen spec fundet i .specs/ (ekskl. _templates og example)"
+            fi
+          fi
+
+      - name: Validate spec sections
+        if: steps.spec-check.outputs.spec_found == 'true'
+        shell: bash
+        run: |
+          SPEC="${{ steps.spec-check.outputs.spec_path }}"
+          ERRORS=0
+
+          echo "Validerer sektioner i $SPEC ..."
+
+          for SECTION in "## Intent" "## Acceptance Criteria" "## Scope" "## Constraints"; do
+            if grep -q "^$SECTION" "$SPEC"; then
+              echo "  ✅ $SECTION"
+            else
+              echo "  ❌ Mangler: $SECTION"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+
+          # Tjek at Acceptance Criteria ikke bare er template-tekst
+          if grep -q "_Kriterie" "$SPEC"; then
+            echo "  ❌ Acceptance Criteria indeholder uudfyldte template-placeholders"
+            ERRORS=$((ERRORS + 1))
+          fi
+
+          # Tjek at Open Questions er besvaret (sektionen må ikke indeholde åbne checkboxes)
+          if grep -q "^## Open Questions" "$SPEC"; then
+            if grep -A 20 "^## Open Questions" "$SPEC" | grep -q "^\- \[ \]"; then
+              echo "  ⚠️  Ubesvarede Open Questions i spec — husk at rydde dem inden merge"
+            fi
+          fi
+
+          if [ $ERRORS -gt 0 ]; then
+            echo ""
+            echo "❌ Spec-validering fejlede med $ERRORS fejl."
+            echo "   Ret spec.md og push igen."
+            exit 1
+          else
+            echo ""
+            echo "✅ Spec-validering bestået."
+          fi
+
+      - name: Fail if no spec
+        if: steps.spec-check.outputs.spec_found == 'false'
+        shell: bash
+        run: |
+          echo ""
+          echo "❌ Denne PR har ingen tilknyttet spec."
+          echo ""
+          echo "Sådan løser du det:"
+          echo "  1. Kør \`/spec \"Beskriv din feature\"\` i Claude Code"
+          echo "  2. Navngiv din branch 'feature/<spec-name>'"
+          echo "     f.eks. git checkout -b feature/add-contact-form"
+          echo "  3. Push igen"
+          echo ""
+          exit 1
