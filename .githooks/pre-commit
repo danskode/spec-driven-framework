@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+# pre-commit hook: Tjekker om en spec eksisterer for dette projekt.
+# Advarer (blokerer ikke) hvis ingen spec er fundet.
+#
+# Aktivér med: git config core.hooksPath .githooks
+
+SPECS_DIR=".specs"
+YELLOW='\033[0;33m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+# Find spec-filer (ekskluder _templates og example)
+SPEC_COUNT=$(find "$SPECS_DIR" -name "spec.md" \
+  ! -path "*/_templates/*" \
+  ! -path "*/example/*" \
+  2>/dev/null | wc -l | tr -d ' ')
+
+if [ "$SPEC_COUNT" -eq 0 ]; then
+  echo ""
+  echo "${YELLOW}⚠  Ingen spec fundet i .specs/${NC}"
+  echo ""
+  echo "   Dette projekt har endnu ingen feature-specs."
+  echo "   Overvej at køre \`/spec\` i Claude Code for at starte struktureret."
+  echo ""
+  echo "   Commit gennemføres — men husk: spec-first er bedre end fix-later."
+  echo ""
+else
+  # Tjek om der er tasks uden plan
+  PLANS=$(find "$SPECS_DIR" -name "plan.md" ! -path "*/_templates/*" ! -path "*/example/*" 2>/dev/null | wc -l | tr -d ' ')
+  SPECS=$(find "$SPECS_DIR" -name "spec.md" ! -path "*/_templates/*" ! -path "*/example/*" 2>/dev/null | wc -l | tr -d ' ')
+
+  if [ "$PLANS" -lt "$SPECS" ]; then
+    echo ""
+    echo "${YELLOW}⚠  ${SPECS} spec(s) fundet, men kun ${PLANS} plan(s)${NC}"
+    echo "   Kør \`/plan\` for at oversætte spec til implementeringsplan."
+    echo ""
+  fi
+fi
+
+exit 0
