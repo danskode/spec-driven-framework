@@ -1,10 +1,3 @@
----
-name: review-spec
-description: Verificerer at implementeringen opfylder acceptance criteria i spec.md — giver pass/fail per kriterie
-user-invocable: true
-allowed-tools: Read, Grep, Bash
----
-
 # /review-spec — Spec Compliance Review
 
 Du er i **Fase 5: Review**. Du må ikke redigere kode i denne fase.

@@ -1,10 +1,3 @@
----
-name: plan
-description: Oversætter en godkendt spec til en præcis teknisk implementeringsplan
-user-invocable: true
-allowed-tools: Read, Write, Glob, Grep
----
-
 # /plan — Generer Teknisk Plan
 
 Du er i **Fase 2: Plan**. Du må ikke redigere kode-filer i denne fase.

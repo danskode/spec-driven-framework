@@ -1,10 +1,3 @@
----
-name: tasks
-description: Nedbryder en godkendt plan til en atomisk, verificerbar task-liste klar til implementering
-user-invocable: true
-allowed-tools: Read, Write
----
-
 # /tasks — Generer Task-liste
 
 Du er i **Fase 3: Tasks**. Du må ikke redigere kode-filer i denne fase.

@@ -22,6 +22,7 @@ Arbejdet er organiseret i fire obligatoriske faser. Du må ikke springe faser ov
 **Tilladte handlinger:** Læs filer, stil afklarende spørgsmål, skriv spec-dokument.
 **Forbudt:** Redigér kode, foreslå implementering, opret nye filer udover spec.md.
 
+Kommando: `.claude/commands/spec.md`
 Artefakt: `.specs/<feature-name>/spec.md`
 
 ---

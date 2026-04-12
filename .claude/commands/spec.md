@@ -1,10 +1,3 @@
----
-name: spec
-description: Start her. Genererer en struktureret spec fra din feature-beskrivelse og gemmer den i .specs/<feature-name>/spec.md
-user-invocable: true
-allowed-tools: Read, Write, AskUserQuestion
----
-
 # /spec — Generer Feature Specification
 
 Du er i **Fase 1: Specify**. Din opgave er at hjælpe brugeren med at skrive en klar, verificerbar spec — inden nogen kode skrives.
