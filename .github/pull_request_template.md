@@ -1,30 +1,26 @@
-## Spec-reference
+## Feature
 
 `.specs/<feature-name>/spec.md`
 
-> Ret stien ovenfor til den faktiske feature-name, f.eks. `.specs/add-contact-form/spec.md`
+> Ret stien til den faktiske feature, f.eks. `.specs/add-contact-form/spec.md`
 
 ## Acceptance Criteria
 
-<!-- Kopiér fra spec.md og sæt status inden du beder om review -->
+<!-- Sæt [x] på de kriterier der er opfyldt -->
 
-- [ ] _Kriterie 1_
-- [ ] _Kriterie 2_
-- [ ] _Kriterie 3_
+- [ ] _Kopier kriterie 1 fra spec.md_
+- [ ] _Kopier kriterie 2 fra spec.md_
+- [ ] _Kopier kriterie 3 fra spec.md_
 
 ## /review-spec output
 
 <!-- Kør /review-spec i Claude Code og paste outputtet her -->
 
-```
-(indsæt output)
-```
-
 ## Ændringer i denne PR
 
 <!-- Kort beskrivelse af hvad der er implementeret -->
 
-- 
+-
 
 ## Checklist
 

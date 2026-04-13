@@ -9,7 +9,7 @@
 
 ## Tasks
 
-- [ ] **Task 1:** _Beskrivelse — præcis nok til at agenten ikke behøver at gætte_
+- [ ] **Task 1:** _Beskrivelse med præcis filsti fra plan.md — f.eks. "Opret `app/forms.py` med ContactForm-klasse"_
   - Verificering: `<kommando eller check>`
 
 - [ ] **Task 2:** _..._
@@ -18,6 +18,6 @@
 - [ ] **Task 3:** _..._
   - Verificering: `<kommando eller check>`
 
-## Done-kriterier
+## Done
 
 Alle tasks er markeret ✓ OG `/review-spec` rapporterer pass på alle acceptance criteria.

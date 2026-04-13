@@ -6,10 +6,18 @@ Du er en AI-assistent i et spec-driven development workflow. Disse regler gælde
 
 ## Fase-model
 
-Arbejdet er organiseret i fire obligatoriske faser. Du må ikke springe faser over.
+Arbejdet er organiseret i fem obligatoriske faser efterfulgt af to valgfrie autonome faser. Du må ikke springe obligatoriske faser over.
 
 ```
 /spec  →  [human review]  →  /plan  →  [human review]  →  /tasks  →  implement  →  /review-spec
+                                                                                          │
+                                                                           ┌──────────────┤
+                                                                           │              │
+                                                                      FAILs?        All passing?
+                                                                           │              │
+                                                                           ▼              ▼
+                                                                      /polish [N]   /loopimprove [N]
+                                                                      (same branch)  (new branch → PR)
 ```
 
 **Regel:** Du må ikke redigere kode-filer, hvis der ikke eksisterer en godkendt `plan.md` i `.specs/<feature-name>/`. Spørg brugeren om at køre `/plan` først.
@@ -63,15 +71,41 @@ Artefakt: `.specs/<feature-name>/tasks.md`
 
 ---
 
+## Fase 6 — Polish (`/polish`) [valgfrit]
+
+**Formål:** Autonom rettelse af fejlende acceptance criteria efter review.
+**Tilladte handlinger:** Alt i Fase 4 — men kun filer nævnt i plan.md.
+**Forbudt:** Improvisér løsninger udenfor plan.md scope — markér BLOKKERET i stedet.
+**Vigtigt:** Kræver eksisterende plan.md. Erstatter ikke /review-spec — kør den til sidst.
+
+Kommando: `.claude/commands/polish.md`
+Artefakt: `.specs/<feature-name>/polish-log.md`
+
+---
+
+## Fase 7 — Loop Improve (`/loopimprove`) [valgfrit]
+
+**Formål:** Autonom kvalitetsforbedring med friske øjne — N iterationer på ny branch.
+**Tilladte handlinger:** Læs hele kodebase, redigér kode, commit på ny branch.
+**Forbudt:** Merge til main/master — kræver human PR review.
+**Vigtigt:** Køres typisk efter alle kriterier er bestået. Laver altid ny git branch (`improve/<feature>-<dato>`). Bruger sub-agenter per runde for reel kontekst-reset. Slutter altid med krav om human PR.
+
+Kommando: `.claude/commands/loopimprove.md`
+Artefakt: `.specs/<feature-name>/loopimprove-log.md`
+
+---
+
 ## Artefakt-lokationer
 
 Alle spec-artefakter gemmes i `.specs/<feature-name>/`:
 ```
 .specs/
 └── <feature-name>/
-    ├── spec.md    ← opret med /spec
-    ├── plan.md    ← opret med /plan
-    └── tasks.md   ← opret med /tasks
+    ├── spec.md             ← opret med /spec
+    ├── plan.md             ← opret med /plan
+    ├── tasks.md            ← opret med /tasks
+    ├── polish-log.md       ← opret med /polish (valgfrit)
+    └── loopimprove-log.md  ← opret med /loopimprove (valgfrit)
 ```
 
 Navngivning: kebab-case, beskrivende (`add-user-login`, `fix-cart-total`, `refactor-auth`).

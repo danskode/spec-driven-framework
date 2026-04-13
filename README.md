@@ -43,6 +43,9 @@ Følg faserne i rækkefølge:
 
 ```
 /spec → [review] → /plan → [review] → /tasks → implement → /review-spec
+                                                                  │
+                                                     FAILs? → /polish [N]
+                                                     All pass? → /loopimprove [N] → PR
 ```
 
 **Review-trinene er dine.** Gennemgå artefakterne inden du går videre.
@@ -93,7 +96,17 @@ Feature-idé
     ▼ [IMPLEMENTERING — task for task]
     │
 /review-spec ───────────────────────────────────────────────────────────
-       Output: Pass/fail per acceptance criteria
+    │  Output: Pass/fail per acceptance criteria
+    │
+    ├─ FAILs? → /polish [N] ────────────────────────────────────────────
+    │      Output: .specs/<feature>/polish-log.md
+    │      Retter fejlende kriterier automatisk over N iterationer
+    │      Kør /review-spec igen til sidst
+    │
+    └─ All passing? → /loopimprove [N] ────────────────────────────────
+           Output: .specs/<feature>/loopimprove-log.md + ny branch
+           Forbedrer kodekvalitet med friske øjne over N runder
+           Kræver human PR-review — merger aldrig selv
 ```
 
 ---
@@ -104,7 +117,7 @@ Feature-idé
 dit-projekt/
 ├── CLAUDE.md              ← Agent-regler (rør ikke)
 ├── CONSTITUTION.md        ← Dine projektstandarder (udfyld dette)
-├── .claude/skills/        ← De 4 skills (/spec, /plan, /tasks, /review-spec)
+├── .claude/commands/      ← Commands (/spec, /plan, /tasks, /review-spec, /polish, /loopimprove)
 ├── .specs/
 │   ├── _templates/        ← Skabeloner (reference)
 │   ├── example/           ← Worked example (se her for inspiration)
@@ -157,6 +170,8 @@ git checkout -b feature/add-contact-form
 | `/plan` | 2 | Oversætter spec til teknisk plan — vælger mønsterfil automatisk |
 | `/tasks` | 3 | Nedbryder plan til atomiske tasks |
 | `/review-spec` | 5 | Verificerer implementering mod acceptance criteria |
+| `/polish [N]` | 6 (valgfrit) | Retter fejlende criteria automatisk, N iterationer (default 3) |
+| `/loopimprove [N]` | 7 (valgfrit) | Forbedrer kodekvalitet med friske øjne, N runder, ny branch, kræver PR |
 
 ---
 

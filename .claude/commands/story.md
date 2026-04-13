@@ -8,11 +8,12 @@ Output fra dette trin føder direkte ind i `/spec`.
 
 ## Trin 1 — Forstå forretningskonteksten
 
-Stil maksimalt 2 spørgsmål for at forstå:
-- Hvem er den primære bruger? (rolle, kontekst, teknisk niveau)
-- Hvad er det forretningsmæssige mål? (ikke "hvad skal bygges" men "hvad skal opnås")
+Identificér om brugeren allerede har angivet:
+- Hvem den primære bruger er (rolle, kontekst)
+- Hvad det forretningsmæssige mål er (ikke "hvad skal bygges" men "hvad skal opnås")
 
-Vent på svar inden du fortsætter.
+Hvis begge er klare fra brugerens beskrivelse: spring spørgsmålene over og fortsæt til Trin 2.
+Hvis én eller begge mangler: stil maksimalt 2 spørgsmål og vent på svar inden du fortsætter.
 
 ## Trin 2 — Skriv user stories
 
