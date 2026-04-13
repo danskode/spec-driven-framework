@@ -49,7 +49,7 @@ Mål: Planen skal referere til præcise filer og funktioner, ikke hypotetiske.
 
 Opret: `.specs/<feature-name>/plan.md`
 
-Brug `.specs/_templates/plan-template.md`. Krav til planen:
+Brug `.specs/_templates/plan-template.md`. Udfyld `Spec-reference`-feltet øverst med den korrekte sti (`.specs/<feature-name>/spec.md`). Krav til planen:
 - **Approach:** Forklar valget af teknisk strategi + hvad der blev fravalgt
 - **Files to Change:** Præcise stier — ingen "se relevante filer"
 - **Steps:** Nummererede, atomiske, verificerbare. Hvert trin skal kunne gennemføres og tjekkes uafhængigt. Skriv dem så klart at enhver model kan følge dem.

@@ -4,15 +4,29 @@ Du er i **Fase 7: Loop Improve**. Din opgave er at forbedre implementeringens kv
 
 ## Trin 0 — Forberedelse
 
-Læs disse filer inden du gør noget andet:
-- `CONSTITUTION.md` — projektstandarder og non-negotiables
+Læs `CONSTITUTION.md` — projektstandarder og non-negotiables.
+
+Sæt `MAX_RUNDER` til argumentet brugeren angav (f.eks. `/loopimprove 5`). Hvis intet argument: brug **3**.
+
+## Trin 1 — Identificér scope
+
+Find feature-mappen i `.specs/`:
+- Hvis brugeren angav et feature-navn som argument (f.eks. `/loopimprove 3 add-contact-form`): brug det
+- Hvis kun én feature-mappe eksisterer med spec.md, plan.md og tasks.md: brug den
+- Hvis flere feature-mapper har alle tre filer: bed brugeren angive feature-navn
+
+Verificér at disse filer eksisterer:
+- `.specs/<feature-name>/plan.md` — hvis ikke: stop og bed brugeren om at køre `/plan`, `/tasks` og fuldføre implementeringen først
+- `.specs/<feature-name>/tasks.md` — hvis ikke: stop og bed brugeren om at køre `/tasks` og fuldføre implementeringen først
+
+Læs:
 - `.specs/<feature-name>/spec.md` — acceptance criteria (din absolutte kvalitetsgulv — de må IKKE brydes)
 - `.specs/<feature-name>/plan.md` — hvad der blev bygget og hvorfor
 - `.specs/<feature-name>/tasks.md` — hvad der blev implementeret
 
-Verificér at `plan.md` og `tasks.md` eksisterer. Hvis ikke: stop og bed brugeren om at køre `/plan`, `/tasks` og fuldføre implementeringen først.
+Notér de primære implementeringsfiler fra `plan.md` → **Files to Change** — disse er dit primære scope. Du MÅ kigge bredere i codebasen, men fokusér her.
 
-Sæt `MAX_RUNDER` til argumentet brugeren angav (f.eks. `/loopimprove 5`). Hvis intet argument: brug **3**.
+Opret `.specs/<feature-name>/loopimprove-log.md`.
 
 Opret ny git branch — tjek først om den allerede eksisterer:
 ```bash
@@ -25,19 +39,6 @@ git checkout -b improve/<feature-name>-<YYYY-MM-DD>
 Eksempel: `improve/add-contact-form-2026-04-13` eller `improve/add-contact-form-2026-04-13-v2`
 
 Meld til brugeren: "Starter /loopimprove på branch `improve/<feature-name>-<dato>` — [N] runder planlagt."
-
-Opret `.specs/<feature-name>/loopimprove-log.md`.
-
-## Trin 1 — Identificér scope
-
-Find feature-mappen i `.specs/`:
-- Hvis brugeren angav et feature-navn som argument (f.eks. `/loopimprove 3 add-contact-form`): brug det
-- Hvis kun én feature-mappe eksisterer med spec.md, plan.md og tasks.md: brug den
-- Hvis flere feature-mapper har alle tre filer: bed brugeren angive feature-navn
-
-Læs acceptance criteria fra `spec.md` — disse er dit **kvalitetsgulv**. Ingen forbedring må få kriterier til at fejle.
-
-Notér de primære implementeringsfiler fra `plan.md` → **Files to Change** — disse er dit primære scope. Du MÅ kigge bredere i codebasen, men fokusér her.
 
 ## Trin 2 — Forbedringsløkke
 

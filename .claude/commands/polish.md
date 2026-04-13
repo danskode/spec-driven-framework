@@ -4,20 +4,11 @@ Du er i **Fase 6: Polish**. Din opgave er at rette fejlende acceptance criteria 
 
 ## Trin 0 — Forberedelse
 
-Læs disse filer inden du gør noget andet:
-- `CONSTITUTION.md` — projektstandarder og non-negotiables
-- `.specs/<feature-name>/spec.md` — acceptance criteria (din målestok)
-- `.specs/<feature-name>/plan.md` — godkendt teknisk plan (filer du må redigere)
-
-Verificér at disse filer eksisterer:
-- `plan.md` — hvis ikke: stop og bed brugeren om at køre `/plan` og `/tasks` først
-- `tasks.md` — hvis ikke: stop og bed brugeren om at køre `/tasks` og fuldføre implementeringen først
-
-`/polish` er kun til post-implementerings-rettelse — brug den ikke som erstatning for implementeringsfasen.
+Læs `CONSTITUTION.md` — projektstandarder og non-negotiables.
 
 Sæt `MAX_ITERATIONER` til argumentet brugeren angav (f.eks. `/polish 5`). Hvis intet argument: brug **3**.
 
-Opret eller åbn `.specs/<feature-name>/polish-log.md` til at logge hvad der ændres per iteration.
+`/polish` er kun til post-implementerings-rettelse — brug den ikke som erstatning for implementeringsfasen.
 
 ## Trin 1 — Identificér feature og læs kriterier
 
@@ -26,9 +17,17 @@ Find feature-mappen i `.specs/`:
 - Hvis kun én feature-mappe eksisterer med spec.md, plan.md og tasks.md: brug den
 - Hvis flere feature-mapper har alle tre filer: bed brugeren angive feature-navn
 
-Læs `.specs/<feature-name>/spec.md`, sektion **Acceptance Criteria**.
+Verificér at disse filer eksisterer:
+- `.specs/<feature-name>/plan.md` — hvis ikke: stop og bed brugeren om at køre `/plan` og `/tasks` først
+- `.specs/<feature-name>/tasks.md` — hvis ikke: stop og bed brugeren om at køre `/tasks` og fuldføre implementeringen først
+
+Læs:
+- `.specs/<feature-name>/spec.md` — acceptance criteria (din målestok)
+- `.specs/<feature-name>/plan.md` — godkendt teknisk plan (filer du må redigere)
 
 Opbyg en intern liste over alle kriterier med status `UKENDT`.
+
+Opret eller åbn `.specs/<feature-name>/polish-log.md` til at logge hvad der ændres per iteration.
 
 ## Trin 2 — Startbaseline (Iteration 0)
 

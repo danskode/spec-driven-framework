@@ -35,6 +35,7 @@ Brug skabelonen fra `.specs/_templates/spec-template.md`. Udfyld alle sektioner:
 - **Acceptance Criteria:** Minimum 3 verificerbare kriterier. Hvert punkt kan besvares ja/nej.
 - **Scope:** Vær eksplicit om hvad der er ude af scope.
 - **Constraints:** Henvis til CONSTITUTION.md for relevante begrænsninger.
+- **Open Questions:** List ubesvarede spørgsmål der skal afklares inden implementering. Slet sektionen helt hvis der ingen åbne spørgsmål er.
 
 ## Trin 3b — Robusthedstjek (intern selvkritik — spørg ikke brugeren)
 
