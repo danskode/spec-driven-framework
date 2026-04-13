@@ -132,13 +132,60 @@ Efter MAX_RUNDER (eller tidlig stop):
 git push -u origin improve/<feature-name>-<dato>
 ```
 
-### 3b — Slutrapport til brugeren
+### 3b — Opret PR med udfyldt indhold
+
+Byg PR-body'en fra det du ved: acceptance criteria fra `spec.md`, hvad hver runde forbedrede, og diff-statistik. Brug `gh pr create` med `--body` så GitHub's generiske template overskrives.
+
+```bash
+gh pr create \
+  --base main \
+  --head improve/<feature-name>-<dato> \
+  --title "loopimprove(<feature-name>): [N] runder kvalitetsforbedring" \
+  --body "$(cat <<'EOF'
+## Feature
+
+`.specs/<feature-name>/spec.md`
+
+## Acceptance Criteria
+
+<!-- Verificeret at ingen kriterier er brudt — loopimprove ændrer ikke funktionalitet -->
+
+- [x] [kriterie 1 fra spec.md]
+- [x] [kriterie 2 fra spec.md]
+...
+
+## Hvad blev forbedret
+
+**Runde 1:** [summary fra loopimprove-log.md]
+**Runde 2:** [summary fra loopimprove-log.md]
+...
+
+## Ændrede filer
+
+[Kør `git diff --stat main...improve/<feature-name>-<dato>` og indsæt output]
+
+## Checklist
+
+- [x] [N] forbedringsrunder gennemført
+- [x] Ingen acceptance criteria brudt (verificeret per runde)
+- [ ] `/review-spec` kørt på denne branch
+- [ ] Kode gennemgået og godkendt til merge
+EOF
+)"
+```
+
+Udfyld alle `[...]`-pladsholdere med faktisk indhold fra `spec.md` og `loopimprove-log.md` inden du kører kommandoen.
+
+Print PR-URL'en til brugeren når PR'en er oprettet.
+
+### 3c — Slutrapport til brugeren
 
 ```
 ## Loopimprove færdig: <feature-name>
 
 **Runder kørt:** [N] af [MAX_RUNDER]
 **Branch:** improve/<feature-name>-<dato>
+**PR:** [URL fra gh pr create]
 
 ### Hvad blev forbedret
 Runde 1: [summary]
@@ -147,20 +194,14 @@ Runde 2: [summary]
 
 ### Næste trin — HUMAN GATE (påkrævet)
 
-1. Review ændringerne:
-   git diff main...improve/<feature-name>-<dato>
-
-2. Kør /review-spec på denne branch for at verificere at criteria stadig er opfyldt
-
-3. Opret en Pull Request til main:
-   gh pr create --base main --head improve/<feature-name>-<dato>
-
-4. Merge KUN efter gennemgang og godkendelse — aldrig direkte push til main
+1. Gennemgå PR'en: [URL]
+2. Kør /review-spec på denne branch inden merge
+3. Merge KUN efter godkendelse — aldrig direkte push til main
 ```
 
 Gem slutrapporten som den afsluttende sektion i `loopimprove-log.md`.
 
-**Opret IKKE PR automatisk. Merge IKKE til main. Brugeren skal gøre dette manuelt.**
+**Merge IKKE til main. PR-review er human gate — kun brugeren godkender merge.**
 
 ## Regler
 
@@ -169,6 +210,6 @@ Gem slutrapporten som den afsluttende sektion i `loopimprove-log.md`.
 - Sub-agenten må læse hele codebasen, men skal begrunde alle ændringer
 - Regression i acceptance criteria → `git revert HEAD` og stop
 - Aldrig `git add -A` — brug præcise filstier
-- Aldrig auto-merge og aldrig auto-opret PR — human gate er non-negotiable
+- Opret PR automatisk med `gh pr create` og udfyldt body — men merge ALDRIG automatisk
 - Stop tidligt hvis sub-agenten ikke finder noget at forbedre — tvang ikke tomme runder igennem
 - `/loopimprove` er ikke en erstatning for `/review-spec` — kør `/review-spec` på improve-branchen inden PR-merge
