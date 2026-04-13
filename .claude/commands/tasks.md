@@ -2,11 +2,15 @@
 
 Du er i **Fase 3: Tasks**. Du må ikke redigere kode-filer i denne fase.
 
-## Trin 1 — Læs plan.md
+## Trin 1 — Find og læs plan.md
 
-Find `.specs/<feature-name>/plan.md` (samme feature som seneste spec/plan).
+Find den relevante plan i `.specs/`:
+- Hvis brugeren angav et feature-navn som argument (f.eks. `/tasks add-contact-form`): brug det
+- Hvis kun én feature-mappe eksisterer med plan.md men uden tasks.md: brug den
+- Hvis flere feature-mapper har plan.md: spørg brugeren hvilken feature der nedbryddes
+- Hvis ingen plan.md eksisterer: stop og bed brugeren om at køre `/plan` først
 
-Læs hele planen. Notér:
+Læs hele `.specs/<feature-name>/plan.md`. Notér:
 - Antal trin og deres afhængigheder
 - Risikable trin der kræver ekstra forsigtighed
 - Test-kommandoer per trin
@@ -26,9 +30,11 @@ Opret: `.specs/<feature-name>/tasks.md`
 
 Format per task:
 ```
-- [ ] **Task N:** [Præcis beskrivelse af hvad der sker]
+- [ ] **Task N:** [Præcis beskrivelse af hvad der sker — inkl. konkret fil fra plan.md]
   - Verificering: `<kommando>` eller [check der beviser det virker]
 ```
+
+Hvert task-navn skal indeholde den præcise filsti fra plan.md's **Files to Change**. Skriv f.eks. "Opret `app/forms.py` med ContactForm-klasse" — ikke "Opret form-filen".
 
 Afslut med done-kriterier:
 ```

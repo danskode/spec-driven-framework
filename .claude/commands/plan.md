@@ -4,9 +4,11 @@ Du er i **Fase 2: Plan**. Du må ikke redigere kode-filer i denne fase.
 
 ## Trin 1 — Find og læs spec.md
 
-Find den seneste eller mest relevante spec i `.specs/`:
-- Hvis kun én feature-mappe eksisterer uden plan.md, brug den
-- Hvis flere: spørg brugeren hvilken feature der planlægges
+Find den relevante spec i `.specs/`:
+- Hvis brugeren angav et feature-navn som argument (f.eks. `/plan add-contact-form`): brug det
+- Hvis kun én feature-mappe eksisterer uden plan.md: brug den
+- Hvis flere feature-mapper eksisterer uden plan.md: spørg brugeren hvilken feature der planlægges
+- Hvis ingen spec.md eksisterer i nogen mappe: stop og bed brugeren om at køre `/spec` først
 
 Læs `.specs/<feature-name>/spec.md` grundigt, især:
 - Acceptance Criteria — disse er din målestok
@@ -32,7 +34,7 @@ Læs det tilsvarende mønsterdokument:
 - `.specs/_templates/patterns/ui.md`
 - `.specs/_templates/patterns/background.md`
 
-Brug mønsteret som tjekliste når du skriver plan.md — verificér at planen dækker de relevante punkter fra mønsteret. Hvis featuren spænder over flere typer, læs begge relevante mønsterfiler.
+Brug mønsteret som tjekliste når du skriver plan.md — verificér at planen dækker de relevante punkter fra mønsteret. Hvis featuren spænder over flere typer, læs begge relevante mønsterfiler. Hvis feature-typen ikke passer i nogen kategori: spring mønster-læsningen over og notér det i plan.md under Approach.
 
 ## Trin 2 — Research kodebasen
 
@@ -52,7 +54,7 @@ Brug `.specs/_templates/plan-template.md`. Krav til planen:
 - **Files to Change:** Præcise stier — ingen "se relevante filer"
 - **Steps:** Nummererede, atomiske, verificerbare. Hvert trin skal kunne gennemføres og tjekkes uafhængigt. Skriv dem så klart at enhver model kan følge dem.
 - **Test Commands:** Kørbare kommandoer — ikke "kør dine tests"
-- **Rollback:** Specifik for de risikable trin
+- **Rollback:** Beskriv konkrete git-kommandoer eller manuelle trin for trin der er destruktive eller svære at fortryde (f.eks. DB-migrationer, blueprint-registreringer, ændringer i eksisterende filer). Nye filer er lav-risiko — fokus på trin der modificerer eksisterende kode.
 
 ## Trin 4 — Præsenter og afvent godkendelse
 
