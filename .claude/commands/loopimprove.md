@@ -134,7 +134,15 @@ git push -u origin improve/<feature-name>-<dato>
 
 ### 3b — Opret PR med udfyldt indhold
 
-Byg PR-body'en fra det du ved: acceptance criteria fra `spec.md`, hvad hver runde forbedrede, og diff-statistik. Brug `gh pr create` med `--body` så GitHub's generiske template overskrives.
+Byg PR-body'en fra det du faktisk ved — læs de nødvendige filer og kør de nødvendige kommandoer for at fylde alt ind. Brug `gh pr create` med `--body` så GitHub's generiske template overskrives.
+
+**Forbered disse værdier inden du bygger PR-body:**
+
+1. Læs alle acceptance criteria fra `.specs/<feature-name>/spec.md` (de faktiske kriterietekster)
+2. Hent per-runde forbedringssummaries fra `loopimprove-log.md`
+3. Kør `git diff --stat main...improve/<feature-name>-<dato>` for diff-statistik
+
+**Byg og kør:**
 
 ```bash
 gh pr create \
@@ -148,33 +156,34 @@ gh pr create \
 
 ## Acceptance Criteria
 
-<!-- Verificeret at ingen kriterier er brudt — loopimprove ændrer ikke funktionalitet -->
+Verificeret ikke brudt i nogen af [N] runder:
 
-- [x] [kriterie 1 fra spec.md]
-- [x] [kriterie 2 fra spec.md]
-...
+- [x] [faktisk kriterie 1 tekst fra spec.md]
+- [x] [faktisk kriterie 2 tekst fra spec.md]
+[osv. — én linje per kriterie, kopieret direkte fra spec.md]
 
 ## Hvad blev forbedret
 
-**Runde 1:** [summary fra loopimprove-log.md]
-**Runde 2:** [summary fra loopimprove-log.md]
-...
+[For hver runde med ændringer:]
+**Runde 1:** [faktisk summary fra loopimprove-log.md]
+**Runde 2:** [faktisk summary fra loopimprove-log.md]
+[Runder uden ændringer udelades]
 
 ## Ændrede filer
 
-[Kør `git diff --stat main...improve/<feature-name>-<dato>` og indsæt output]
+[output fra: git diff --stat main...improve/<feature-name>-<dato>]
 
 ## Checklist
 
 - [x] [N] forbedringsrunder gennemført
-- [x] Ingen acceptance criteria brudt (verificeret per runde)
-- [ ] `/review-spec` kørt på denne branch
+- [x] Ingen acceptance criteria brudt (verificeret per runde i loopimprove-log.md)
+- [ ] `/review-spec` kørt og godkendt
 - [ ] Kode gennemgået og godkendt til merge
 EOF
 )"
 ```
 
-Udfyld alle `[...]`-pladsholdere med faktisk indhold fra `spec.md` og `loopimprove-log.md` inden du kører kommandoen.
+Alle `[...]` i skabelonen ovenfor skal erstattes med faktisk indhold — der må ikke stå pladsholdertekst i den PR der oprettes.
 
 Print PR-URL'en til brugeren når PR'en er oprettet.
 
