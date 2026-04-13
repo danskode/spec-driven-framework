@@ -52,6 +52,7 @@ Sig følgende til brugeren:
 >
 > - Sig **'implementer task 1'** for at starte — én ad gangen giver mest kontrol
 > - Eller sig **'implementer alle tasks'** for at køre dem i forlængelse af hinanden
+> - **Commit efter hvert task** med en beskrivende besked der refererer til feature-navnet
 >
 > Når alle tasks er markeret ✓, kør `/review-spec` for at verificere mod spec.md."
 

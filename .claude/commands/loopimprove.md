@@ -119,7 +119,7 @@ Opdater listen over "hvad tidligere runder ændrede" til brug i næste rundes su
 
 Stop løkken tidligt hvis:
 - **Sub-agenten fandt intet at forbedre:** Koden er allerede optimal — stop
-- **Regression opdaget:** Kør `git revert HEAD` for at fortryde rundens commit, stop med advarsel til brugeren
+- **Regression opdaget:** Sub-agentens ændringer er endnu ikke committed — kør `git checkout -- <ændrede-filer>` for at fortryde de uncommitted ændringer, stop med advarsel til brugeren
 - **MAX_RUNDER er nået:** Stop normalt
 
 ## Trin 3 — Afslutning
